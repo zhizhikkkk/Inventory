@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8a42cc4ed076bf419ff2a231b2b467a, type: 3}
+  m_Name: Sword 1
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 8448550349800363333, guid: eaebb77ac21fd834cae1e5d290902d91, type: 3}
+  type: 1
+  description: Zoro
+  atkBonus: 15
+  defenseBonus: 0
