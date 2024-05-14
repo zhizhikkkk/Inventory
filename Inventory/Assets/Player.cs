@@ -20,7 +20,6 @@ public class Player : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Chushpan");
         var item = other.GetComponent<Item>();
 
         if (item)
