@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10532f585b7d7de4bb00a03417c61a65, type: 3}
   m_Name: Banana
   m_EditorClassIdentifier: 
-  prefab: {fileID: 277016692532581658, guid: 188385782911ecb4586205f05a850487, type: 3}
+  Id: 0
+  uiDisplay: {fileID: 1479709040, guid: f622cd8c274a74e458573f8a52b06f6e, type: 3}
   type: 0
   description: Minon
   restoreHealthValue: 20

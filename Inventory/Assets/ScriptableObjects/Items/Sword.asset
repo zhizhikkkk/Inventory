@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8a42cc4ed076bf419ff2a231b2b467a, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8448550349800363333, guid: bb09324e9dba9f34cbf11e3a9722251f, type: 3}
+  Id: 5
+  uiDisplay: {fileID: -1700434873, guid: f622cd8c274a74e458573f8a52b06f6e, type: 3}
   type: 1
   description: Zoro
   atkBonus: 10

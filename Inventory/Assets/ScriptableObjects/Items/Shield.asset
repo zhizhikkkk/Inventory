@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8a42cc4ed076bf419ff2a231b2b467a, type: 3}
   m_Name: Shield
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8448550349800363333, guid: 06bc1da0cbb5a6e488409e9038c5fcad, type: 3}
+  Id: 2
+  uiDisplay: {fileID: 722823054, guid: f622cd8c274a74e458573f8a52b06f6e, type: 3}
   type: 1
   description: Zoro
   atkBonus: 0

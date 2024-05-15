@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class Player : MonoBehaviour
 {
@@ -20,17 +21,17 @@ public class Player : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        var item = other.GetComponent<Item>();
-
-        if (item)
+       
+        var groundItem = other.GetComponent<GroundItem>();
+        if (groundItem)
         {
-            inventory.AddItem(item.item, 1);
+            inventory.AddItem(new Item(groundItem.item), 1);
             Destroy(other.gameObject);
         }
     }
 
     private void OnApplicationQuit()
     {
-        inventory.container.Clear();
+       inventory.container.Items.Clear();
     }
 }

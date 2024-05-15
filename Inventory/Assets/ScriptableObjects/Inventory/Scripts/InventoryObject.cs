@@ -4,81 +4,95 @@ using UnityEngine;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using UnityEditor;
+using System.ComponentModel;
+using System.Runtime.Serialization;
 
 [CreateAssetMenu(fileName = "New Inventory", menuName = "Inventory System/Inventory")]
-public class InventoryObject : ScriptableObject, ISerializationCallbackReceiver
+public class InventoryObject : ScriptableObject
 {
     public string savePath;
-    private ItemDatabaseObject database;
-    public List<InventorySlot> container = new List<InventorySlot>();
+    public  ItemDatabaseObject database;
+    public Inventory container;
+    
 
-    private void OnEnable()
-    {
-#if UNITY_EDITOR
-        database = AssetDatabase.LoadAssetAtPath<ItemDatabaseObject>("Assets/Resources/Database.asset");
-#else
-        database = Resources.Load<ItemDatabaseObject>("Database");
-#endif
-    }
 
-    public void AddItem(ItemObject item, int amount)
+    public void AddItem(Item item, int amount)
     {
-        for (int i = 0; i < container.Count; i++)
+
+        if(item.buffs.Length>0) {
+            container.Items.Add(new InventorySlot(item.Id,item,amount));
+            return;
+        }
+       
+
+        for (int i = 0; i < container.Items.Count; i++)
         {
-            if (container[i].item == item)
+            if (container.Items[i].item.Id == item.Id)
             {
-                container[i].AddAmount(amount);
+                container.Items[i].AddAmount(amount);
                 return;
             }
         }
 
-        container.Add(new InventorySlot(database.GetId[item],item, amount));
+        container.Items.Add(new InventorySlot(item.Id,item, amount));
         
     }
 
 
-    
+    [ContextMenu("Save")]
     public void Save()
     {
-        Debug.Log("Save");
-        string saveData = JsonUtility.ToJson(this, true);
-        File.WriteAllText(string.Concat(Application.persistentDataPath, savePath), saveData);
-    }
+        //Debug.Log("Save");
+        //string saveData = JsonUtility.ToJson(this, true);
+        //File.WriteAllText(string.Concat(Application.persistentDataPath, savePath), saveData);
 
+        IFormatter formatter = new BinaryFormatter();
+        Stream stream = new FileStream(string.Concat(Application.persistentDataPath, savePath), FileMode.Create, FileAccess.Write);
+        formatter.Serialize(stream, container);
+        stream.Close();
+    }
+    [ContextMenu("Load")]
     public void Load()
     {
         Debug.Log("Load");
-        string fullPath = string.Concat(Application.persistentDataPath, savePath);
-        if (File.Exists(fullPath))
-        {
-            string saveData = File.ReadAllText(fullPath);
-            JsonUtility.FromJsonOverwrite(saveData, this);
-        }
+        //string fullPath = string.Concat(Application.persistentDataPath, savePath);
+        //if (File.Exists(fullPath))
+        //{
+        //    string saveData = File.ReadAllText(fullPath);
+        //    JsonUtility.FromJsonOverwrite(saveData, this);
+        //}
+        IFormatter formatter = new BinaryFormatter();
+        Stream stream = new FileStream(string.Concat(Application.persistentDataPath, savePath), FileMode.Open, FileAccess.Read);
+        container = (Inventory)formatter.Deserialize(stream);
+        stream.Close();
     }
-    public void OnAfterDeserialize()
+    [ContextMenu("Clear")]
+    public void Clear()
     {
-        for(int i = 0; i < container.Count; i++)
-        {
-            container[i].item = database.GetItem[container[i].ID];
-        }
+        container = new Inventory();
     }
-
-    public void OnBeforeSerialize()
-    {
-    }
+   
 }
 
 
 [System.Serializable]
+public class Inventory
+{
+    public List<InventorySlot> Items = new List<InventorySlot>();
+
+
+}
+
+[System.Serializable]
 public class InventorySlot
 {
-    public ItemObject item;
+    public Item item;
 
     public int ID;
 
     public int amount;
 
-    public InventorySlot(int id,ItemObject item, int amount)
+    public InventorySlot(int id,Item item, int amount)
     {
         ID = id;
         this.item = item;

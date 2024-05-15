@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa64a05c64fe75d4481f1f7f9c010531, type: 3}
   m_Name: Bones
   m_EditorClassIdentifier: 
-  prefab: {fileID: 8448550349800363333, guid: 3f321a7083263fb4aa6bacdf0bddce21, type: 3}
+  Id: 1
+  uiDisplay: {fileID: -2043901122, guid: f622cd8c274a74e458573f8a52b06f6e, type: 3}
   type: 2
   description: Bratishka Bakha
