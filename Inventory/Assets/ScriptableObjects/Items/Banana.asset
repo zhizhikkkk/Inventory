@@ -15,5 +15,6 @@ MonoBehaviour:
   Id: 0
   uiDisplay: {fileID: 1479709040, guid: f622cd8c274a74e458573f8a52b06f6e, type: 3}
   type: 0
+  maxStackSize: 10
   description: Minon
-  restoreHealthValue: 20
+  buffs: []

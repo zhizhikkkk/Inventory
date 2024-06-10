@@ -16,11 +16,11 @@ public enum Attributes
     Strength
 }
 public abstract class ItemObject : ScriptableObject
-
 {
     public int Id;
     public Sprite uiDisplay;
     public ItemType type;
+    public int maxStackSize; // Новое поле
     [TextArea(15, 20)]
     public string description;
     public ItemBuff[] buffs;
@@ -37,16 +37,18 @@ public class Item
 {
     public string Name;
     public int Id;
+    public int maxStackSize; // Новое поле
     public ItemBuff[] buffs;
+
     public Item(ItemObject item)
     {
         Name = item.name;
         Id = item.Id;
+        maxStackSize = item.maxStackSize; // Инициализация нового поля
         buffs = new ItemBuff[item.buffs.Length];
 
-        for(int i=0;i<buffs.Length; i++)
+        for (int i = 0; i < buffs.Length; i++)
         {
-            
             buffs[i] = new ItemBuff(item.buffs[i].min, item.buffs[i].max);
             buffs[i].attribute = item.buffs[i].attribute;
         }

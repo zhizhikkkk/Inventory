@@ -1,7 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Progress;
 
 public class Player : MonoBehaviour
 {
@@ -12,19 +9,22 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             inventory.Save();
+            Debug.Log("Inventory saved.");
         }
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             inventory.Load();
+            Debug.Log("Inventory loaded.");
         }
     }
+
     public void OnTriggerEnter(Collider other)
     {
-       
         var groundItem = other.GetComponent<GroundItem>();
         if (groundItem)
         {
+            Debug.Log($"Picking up item {groundItem.item.name}");
             inventory.AddItem(new Item(groundItem.item), 1);
             Destroy(other.gameObject);
         }
@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-       inventory.container.Items.Clear();
+        inventory.container.Items.Clear();
+        Debug.Log("Inventory cleared on application quit.");
     }
-}
+} 

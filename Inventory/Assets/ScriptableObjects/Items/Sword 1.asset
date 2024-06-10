@@ -15,6 +15,10 @@ MonoBehaviour:
   Id: 3
   uiDisplay: {fileID: 646002590, guid: f622cd8c274a74e458573f8a52b06f6e, type: 3}
   type: 1
+  maxStackSize: 10
   description: Zoro
-  atkBonus: 15
-  defenseBonus: 0
+  buffs:
+  - attribute: 2
+    value: 0
+    min: 1
+    max: 20

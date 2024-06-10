@@ -15,4 +15,6 @@ MonoBehaviour:
   Id: 1
   uiDisplay: {fileID: -2043901122, guid: f622cd8c274a74e458573f8a52b06f6e, type: 3}
   type: 2
+  maxStackSize: 10
   description: Bratishka Bakha
+  buffs: []
